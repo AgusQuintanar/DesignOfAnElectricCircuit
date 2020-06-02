@@ -39,9 +39,16 @@ class Main(tk.Tk):
 
         style.configure(
             "LightText.TLabel",
-            background=COLOR_PRIMARY,
-            foreground=COLOR_LIGHT_TEXT,
-            font=("TkDefaultFont", 11)
+            background="blue",
+            foreground="white",
+            font=("TkDefaultFont", 22)
+        )
+
+        style.configure(
+            "LightTextEntry.TLabel",
+            background="black",
+            foreground="white",
+            font=("TkDefaultFont", 20)
         )
 
         style.configure(

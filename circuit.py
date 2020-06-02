@@ -25,9 +25,9 @@ class Circuit(ttk.Frame):
         self.BACKGROUND_IMAGE = ImageTk.PhotoImage(Image.open(BACKGROUND_PATH).resize((int(self.width), int(self.height)), Image.ANTIALIAS))
         
         self.frames = {}
-        self.resistance = 0
-        self.inductance = 0
-        self.capacitance = 0
+        self.resistance = tk.DoubleVar(0)
+        self.inductance = tk.DoubleVar(0)
+        self.capacitance = tk.DoubleVar(0)
 
         container = ttk.Frame(self)
         container["height"] = self.height
