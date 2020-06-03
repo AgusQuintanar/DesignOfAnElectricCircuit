@@ -18,7 +18,7 @@ class Circuit_Graph(ttk.Frame):
 
         self.grid_propagate(0) #disables grid shrinking
 
-        graph.plot(self.circuit.dashboard.func, self.circuit.dashboard.start, self.circuit.dashboard.end)
+        #graph.plot(self.circuit.dashboard.func, self.circuit.dashboard.start, self.circuit.dashboard.end)
 
     
         info_button = ttk.Button(

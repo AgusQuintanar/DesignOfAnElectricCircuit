@@ -6,6 +6,7 @@ from PIL import Image, ImageTk
 from circuit_drawing import Circuit_Drawing
 import function
 import bisection
+import graph
 
 class Dashboard(ttk.Frame):
     def __init__(self, parent, controller, show_settings, height, width):
@@ -32,23 +33,20 @@ class Dashboard(ttk.Frame):
 
         self.handle_entries_change()
 
-        
-
-
     def calculate_resistance(self):
         self.circuit.frames[Circuit_Drawing].show_button["state"] = "normal"
         self.func = function.get_func(self.control_panel.time.get(), self.circuit.inductance.get(), self.circuit.capacitance.get(), self.control_panel.disipation_ratio.get())
-        self.start, selfend = function.get_range(self.circuit.inductance.get(), self.circuit.capacitance.get())
-        resistance = bisection.solve(func, self.start, self.end, 1000, .001)
+        self.start, self.end = function.get_range(self.circuit.inductance.get(), self.circuit.capacitance.get())
+        resistance = bisection.solve(self.func, self.start, self.end, 1000, .001)
         self.circuit.resistance.set(f'{resistance:.2f}')
-
-
 
     def handle_entries_change(self, *args):
         self.circuit.frames[Circuit_Drawing].show_button["state"] = "disabled"
     
-
-      
+    def show_graph(self):
+        if self.func is not None:
+            graph.plot(self.func, self.start, self.end)  
+        print(self.end)  
 
 
   
