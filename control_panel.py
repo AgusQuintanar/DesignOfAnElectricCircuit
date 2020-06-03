@@ -9,38 +9,76 @@ class Control_Panel(ttk.Frame):
         self.height = int(height)
         self.width = int(width)
 
-        self.parent = parent
-
-        print(self.parent.controller)
-
+        self.dashboard = parent
 
         self["height"] = self.height
         self["width"] =  self.width
-        self["style"] = "BackgroundBLACK.TFrame"
+        self["style"] = "BackgroundControlPanel.TFrame"
 
         self.grid_propagate(0) #disables grid shrinking
 
-        # BACKGROUND_PATH = "Assets/panel_background.jpg"
-        # background_image = ImageTk.PhotoImage(Image.open(BACKGROUND_PATH).resize((int(self.width), int(self.height)), Image.ANTIALIAS))
-        # background_label = tk.Label(self, image=background_image)
-        # background_label.place(x=0, y=0, relwidth=1, relheight=1)
-        # background_label.image = background_image
+        self.disipation_ratio = tk.DoubleVar()
+        self.time = tk.DoubleVar()
 
-    
-        # IMAGE_SETTINGS_BUTTON_PATH = "Assets/settings_icon.png" 
-        # settings_button_image = ImageTk.PhotoImage(Image.open(IMAGE_SETTINGS_BUTTON_PATH).resize((int(.056*self.width), int(.48*self.height)), Image.ANTIALIAS))
+        self.disipation_ratio.trace("w", self.dashboard.handle_entries_change)
+        self.time.trace("w", self.dashboard.handle_entries_change)
 
-        settings_button = tk.Button(
+
+        label_disipation_tag = ttk.Label(
+            self,
+            text= 'Disipation Ratio (0, 1]',
+            style="LightText6.TLabel"
+        )
+        label_disipation_tag.grid(column=0, row=0, sticky="EW", padx=(int(.175*self.width),int(.05*self.width)), pady=(int(.05*self.height),0))
+
+
+        disipation_ratio = tk.Scale (
+            self,
+            orient="vertical",
+            from_=0.0001,
+            to=1,
+            variable=self.disipation_ratio,
+            length=int(.3*self.height),
+            tickinterval=.9999, 
+            resolution=0.0001,
+            font="Helvetica 16",
+            foreground="#bfbfbf",
+            background="#222a2e",
+            troughcolor='#04a7e0',
+            activebackground='#1065BF',
+            sliderrelief='flat',
+            highlightthickness=0
+        )
+
+        disipation_ratio.grid(column=0, row=1, sticky="NS", padx=int(.35*self.width), pady=(int(.05*self.height),int(.05*self.height)))
+
+
+        label_time_tag = ttk.Label(
+            self, 
+            text='Interval of Time (s)',
+            style="LightText6.TLabel"
+        )
+        label_time_tag.grid(column=0, row=2, sticky="EW", padx=(int(.25*self.width), int(.3*self.width)), pady=(int(.05*self.height),0))
+
+        entry_time = ttk.Entry(
+            self, 
+            style="LightTextEntry7.TLabel",
+            textvariable=self.time,
+            width = 10,
+            font="Helvetica 20",
+            justify='center'
+        )
+        entry_time.grid(column=0, row=3, sticky="EW", padx=(int(.25*self.width),int(.3*self.width)), pady=(15,15))
+
+
+        calculate_button = ttk.Button(
                     self, 
-                    # image=settings_button_image, 
-                    borderwidth=0, 
-                    highlightthickness=0, 
-                    padx=0,
-                    pady=0,
                     cursor="hand2",
-                    #command=
+                    style="Button.TButton",
+                    text="Calculate Resistance",
+                    command=self.dashboard.calculate_resistance,
                     )
-        settings_button.grid(row=0, column=4, pady=(10, 10), padx=(int(.3*self.width),20))
+        calculate_button.grid(row=5, column=0, padx=(int(.0*self.width),int(.05*self.width)), pady=(.1*self.height, 10))
         # settings_button.image = settings_button_image
 
 

@@ -8,7 +8,7 @@ class Circuit(ttk.Frame):
     def __init__(self, parent, height, width):
         super().__init__(parent)
 
-        self.parent = parent
+        self.dashboard= parent
 
         self.height = height
         self.width = width
@@ -25,9 +25,11 @@ class Circuit(ttk.Frame):
         self.BACKGROUND_IMAGE = ImageTk.PhotoImage(Image.open(BACKGROUND_PATH).resize((int(self.width), int(self.height)), Image.ANTIALIAS))
         
         self.frames = {}
-        self.resistance = tk.DoubleVar(0)
+        self.resistance = tk.StringVar()
+        self.resistance.set('Not Calculated')
         self.inductance = tk.DoubleVar(0)
         self.capacitance = tk.DoubleVar(0)
+        self.voltage = tk.DoubleVar(0)
 
         container = ttk.Frame(self)
         container["height"] = self.height
