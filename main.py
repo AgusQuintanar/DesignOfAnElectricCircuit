@@ -26,7 +26,8 @@ class Main(tk.Tk):
         style.configure("BackgroundPURPLE.TFrame", background="purple")
         style.configure("BackgroundWHITE.TFrame", background="white")
         style.configure("BackgroundORANGE.TFrame", background="orange")
-        style.configure("BackgroundDM.TFrame", background="#1e262b")
+        style.configure("BackgroundControlPanel.TFrame", background="#222a2e")
+        style.configure("BackgroundGraph.TFrame", background="#334148")
 
 
         style.configure("Background.TFrame", background=COLOR_PRIMARY)
@@ -39,14 +40,55 @@ class Main(tk.Tk):
 
         style.configure(
             "LightText.TLabel",
-            background="blue",
+            background="#334148",
             foreground="white",
-            font=("TkDefaultFont", 22)
+            font=("TkDefaultFont", 22),
         )
 
         style.configure(
             "LightTextEntry.TLabel",
-            background="black",
+            background="#70b88d",
+            foreground="white",
+            font=("TkDefaultFont", 20)
+        )
+
+        style.configure(
+            "LightText6.TLabel",
+            background="#222a2e",
+            foreground="white",
+            font=("TkDefaultFont", 20)
+        )
+
+        style.configure(
+            "LightText8.TLabel",
+            background="#334148",
+            foreground="#fff8e7",
+            font=("TkDefaultFont", 80)
+        )
+
+        style.configure(
+            "LightTextEntry2.TLabel",
+            background="#de9578",
+            foreground="white",
+            font=("TkDefaultFont", 20)
+        )
+
+        style.configure(
+            "LightTextEntry4.TLabel",
+            background="#bfbb73",
+            foreground="white",
+            font=("TkDefaultFont", 20)
+        )
+
+        style.configure(
+            "LightTextEntry3.TLabel",
+            background="#978fdb",
+            foreground="white",
+            font=("TkDefaultFont", 20)
+        )
+        style.configure(
+            "LightTextEntry7.TLabel",
+            background='#04a7e0',
             foreground="white",
             font=("TkDefaultFont", 20)
         )
@@ -55,7 +97,8 @@ class Main(tk.Tk):
             "Button.TButton",
             background=[COLOR_SECONDARY],
             foreground=COLOR_LIGHT_TEXT,
-            font=("TkDefaultFont", 11)
+            font=("TkDefaultFont", 22),
+            activebackground="black"
         )
 
         style.configure(
@@ -105,6 +148,7 @@ class Main(tk.Tk):
     def show_frame(self, container):
         frame = self.frames[container]
         frame.tkraise()
+
 
 if __name__ == '__main__':        
     root = Main()

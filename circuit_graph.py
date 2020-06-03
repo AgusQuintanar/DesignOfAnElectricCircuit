@@ -13,7 +13,7 @@ class Circuit_Graph(ttk.Frame):
 
         self["height"] = self.height
         self["width"] = self.width
-        self["style"] = "BackgroundORANGE.TFrame"
+        self["style"] = "BackgroundGraph.TFrame"
 
         # background_label = tk.Label(self, image=self.circuit.BACKGROUND_IMAGE)
         # background_label.place(x=0, y=0, relwidth=1, relheight=1)
@@ -23,16 +23,13 @@ class Circuit_Graph(ttk.Frame):
 
         # I_ICON_PATH = "Assets/i_icon.png"
         # i_icon_image = ImageTk.PhotoImage(Image.open(I_ICON_PATH).resize((int(.07*self.width), int(.125*self.height)), Image.ANTIALIAS))
-        info_button = tk.Button(
+        info_button = ttk.Button(
             self, 
             # image=i_icon_image, 
             text = "Show Drawing",
-            borderwidth=0, 
-            highlightthickness=0, 
-            padx=0,
-            pady=0,
             cursor="hand2",
-            command=show_main_panel
+            command=show_main_panel,
+            style="Button.TButton"
         )
         info_button.grid(row=3, column=4, pady=(7, 0), padx=(19,0))
         # info_button.image = i_icon_image

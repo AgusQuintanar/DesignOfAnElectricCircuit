@@ -24,67 +24,102 @@ class Circuit_Drawing(ttk.Frame):
 
         self.grid_propagate(0) #disables grid shrinking
 
+        label_title = ttk.Label(
+            self, 
+            text='Design of an Electric Circuit',
+            style="LightText8.TLabel"
+        )
+        label_title.grid(column=0, row=0, columnspan=3, sticky="EW", padx=(int(.075*self.width), int(.0*self.width)), pady=(int(.05*self.height),int(.05*self.height)))
+
+        # label_voltage_tag = ttk.Label(
+        #     self, 
+        #     text=' Voltage (V)',
+        #     style="LightText.TLabel"
+        # )
+        # label_voltage_tag.grid(column=0, row=1, sticky="EW", padx=(int(.125*self.width),int(.125*self.width)), pady=(int(.455*self.height),0))
+
+        # entry_voltage = ttk.Entry(
+        #     self, 
+        #     style="LightTextEntry4.TLabel",
+        #     textvariable=self.circuit.voltage,
+        #     width = 10,
+        #     font="Helvetica 20",
+        #     justify='center'
+        # )
+        # entry_voltage.grid(column=0, row=2, sticky="EW", padx=(int(.125*self.width), int(.125*self.width)), pady=(15,0))
 
         label_capacitance_tag = ttk.Label(
             self, 
-            text='Capacitance',
+            text='Capacitance (F)',
             style="LightText.TLabel"
         )
-        label_capacitance_tag.grid(column=1, row=1, sticky="EW", padx=(int(.415*self.width),10), pady=(int(.455*self.height),0))
+        label_capacitance_tag.grid(column=1, row=1, sticky="EW", padx=(int(.22*self.width), int(.3*self.width)), pady=(int(.25*self.height),0))
 
         entry_capacitance = ttk.Entry(
             self, 
             style="LightTextEntry.TLabel",
             textvariable=self.circuit.capacitance,
             width = 10,
-            font="Helvetica 20"
+            font="Helvetica 20",
+            justify='center'
         )
-        entry_capacitance.grid(column=1, row=2, sticky="EW", padx=(int(.415*self.width),10), pady=(15,0))
+        entry_capacitance.grid(column=1, row=2, sticky="EW", padx=(int(.22*self.width),int(.3*self.width)), pady=(15,0))
 
         label_inductance_tag = ttk.Label(
             self, 
-            text='Inductance',
-            style="LightText.TLabel"
+            text='Inductance (H)',
+            style="LightText.TLabel",
+            justify='center'
         )
-        label_inductance_tag.grid(column=2, row=1, sticky="EW", padx=(int(.325*self.width),130), pady=(int(.455*self.height),0))
+        label_inductance_tag.grid(column=2, row=1, sticky="EW", padx=(0,130), pady=(int(.25*self.height),0))
 
         entry_inductance = ttk.Entry(
             self, 
-            style="LightTextEntry.TLabel",
+            style="LightTextEntry2.TLabel",
             textvariable=self.circuit.inductance,
             width = 10,
-            font="Helvetica 20"
+            font="Helvetica 20",
+            justify='center'
         )
-        entry_inductance.grid(column=2, row=2, sticky="EW", padx=(int(.325*self.width),130), pady=(15,0))
+        entry_inductance.grid(column=2, row=2, sticky="EW", padx=(0,130), pady=(15,0))
 
         label_resistance_tag = ttk.Label(
             self,
-            text= 'Resistance',
+            text= 'Resistance (Ω)',
             style="LightText.TLabel"
         )
-        label_resistance_tag.grid(column=2, row=3, sticky="EW", padx=(0,int(.45*self.width)), pady=(int(.275*self.height),0))
+        label_resistance_tag.grid(column=1, row=3, sticky="EW", padx=(int(.34*self.width),int(.2*self.width)), pady=(int(.275*self.height),0))
 
-        entry_resistance = ttk.Entry(
+        # entry_resistance = tk.Entry(
+        #     self, 
+        #     textvariable=self.circuit.resistance,
+        #     width = 10,
+        #     font="Helvetica 20",
+        #     disabledforeground='#f0f5f3',
+        #     justify='center',
+        #     state='disabled',
+        #     disabledbackground="#978fdb",
+        # )
+
+        entry_resistance = ttk.Label(
             self, 
-            style="LightTextEntry.TLabel",
+            style="LightTextEntry3.TLabel",
             textvariable=self.circuit.resistance,
-            width = 10,
-            font="Helvetica 20"
+            width = .13*self.width,
+            font="Helvetica 20",
+            justify='center',
+            anchor="center"
         )
-        entry_resistance.grid(column=2, row=4, sticky="EW", padx=(0,int(.45*self.width)), pady=(15,0))
+        entry_resistance.grid(column=1, row=4, sticky="EW", padx=(int(.34*self.width),int(.2*self.width)), pady=(15,0))
 
        
 
-        info_button = tk.Button(
+        self.show_button = ttk.Button(
             self, 
-            # image=i_icon_image, 
             text = "Show Graph",
-            borderwidth=0, 
-            highlightthickness=0, 
-            padx=0,
-            pady=0,
             cursor="hand2",
-            command=show_info_panel
+            command=show_info_panel,
+            style="Button.TButton",
         )
-        info_button.grid(row=4, column=1, pady=(10, 0), padx=(0,0))
+        self.show_button.grid(row=4, column=0, pady=(10, 0), padx=(int(.05*self.width),0))
         # info_button.image = i_icon_image

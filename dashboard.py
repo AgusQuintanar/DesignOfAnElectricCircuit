@@ -3,6 +3,7 @@ from tkinter import ttk
 from circuit import Circuit
 from control_panel import Control_Panel
 from PIL import Image, ImageTk
+from circuit_drawing import Circuit_Drawing
 
 
 class Dashboard(ttk.Frame):
@@ -18,14 +19,21 @@ class Dashboard(ttk.Frame):
         self.controller = controller
         self.columnconfigure(0, weight=1)
         self.rowconfigure(0, weight=1)
-
  
-        self.circuit = Circuit(self, height=height, width=.75*width)
+        self.circuit = Circuit(self, height=height, width=.8*width)
         self.circuit.grid(row=0, column=0, sticky="NSEW")
 
-        self.control_panel = Control_Panel(self, height=height, width=.25*width)
+        self.control_panel = Control_Panel(self, height=height, width=.2*width)
         self.control_panel.grid(row=0, column=1, sticky="NSEW")
 
+        self.handle_entries_change()
+
+
+    def calculate_resistance(self):
+        self.circuit.frames[Circuit_Drawing].show_button["state"] = "normal"
+
+    def handle_entries_change(self, *args):
+        self.circuit.frames[Circuit_Drawing].show_button["state"] = "disabled"
     
 
       
