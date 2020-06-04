@@ -116,9 +116,10 @@ class Circuit_Drawing(ttk.Frame):
 
         self.show_button = ttk.Button(
             self, 
-            text = "Show Graph",
+            text="Show Graph",
             cursor="hand2",
-            command=show_info_panel,
+            # command=show_info_panel,
+            command=self.circuit.dashboard.show_graph,
             style="Button.TButton",
         )
         self.show_button.grid(row=4, column=0, pady=(10, 0), padx=(int(.05*self.width),0))

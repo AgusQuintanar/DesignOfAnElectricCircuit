@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from PIL import Image, ImageTk
+import graph
 
 class Circuit_Graph(ttk.Frame):
     def __init__(self, container, circuit, show_main_panel):
@@ -15,14 +16,11 @@ class Circuit_Graph(ttk.Frame):
         self["width"] = self.width
         self["style"] = "BackgroundGraph.TFrame"
 
-        # background_label = tk.Label(self, image=self.circuit.BACKGROUND_IMAGE)
-        # background_label.place(x=0, y=0, relwidth=1, relheight=1)
-        # background_label.image = self.circuit.BACKGROUND_IMAGE
-
         self.grid_propagate(0) #disables grid shrinking
 
-        # I_ICON_PATH = "Assets/i_icon.png"
-        # i_icon_image = ImageTk.PhotoImage(Image.open(I_ICON_PATH).resize((int(.07*self.width), int(.125*self.height)), Image.ANTIALIAS))
+        #graph.plot(self.circuit.dashboard.func, self.circuit.dashboard.start, self.circuit.dashboard.end)
+
+    
         info_button = ttk.Button(
             self, 
             # image=i_icon_image, 

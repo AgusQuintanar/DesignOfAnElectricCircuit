@@ -17,8 +17,8 @@ class Control_Panel(ttk.Frame):
 
         self.grid_propagate(0) #disables grid shrinking
 
-        self.disipation_ratio = tk.DoubleVar()
-        self.time = tk.DoubleVar()
+        self.disipation_ratio = tk.StringVar()
+        self.time = tk.StringVar()
 
         self.disipation_ratio.trace("w", self.dashboard.handle_entries_change)
         self.time.trace("w", self.dashboard.handle_entries_change)
@@ -35,12 +35,12 @@ class Control_Panel(ttk.Frame):
         disipation_ratio = tk.Scale (
             self,
             orient="vertical",
-            from_=0.0001,
+            from_=0.001,
             to=1,
             variable=self.disipation_ratio,
             length=int(.3*self.height),
-            tickinterval=.9999, 
-            resolution=0.0001,
+            tickinterval=.999, 
+            resolution=0.001,
             font="Helvetica 16",
             foreground="#bfbfbf",
             background="#222a2e",
@@ -52,13 +52,22 @@ class Control_Panel(ttk.Frame):
 
         disipation_ratio.grid(column=0, row=1, sticky="NS", padx=int(.35*self.width), pady=(int(.05*self.height),int(.05*self.height)))
 
+        entry_disipation_ratio = ttk.Entry(
+            self, 
+            style="LightTextEntry7.TLabel",
+            textvariable=self.disipation_ratio,
+            width = 10,
+            font="Helvetica 20",
+            justify='center'
+        )
+        entry_disipation_ratio.grid(column=0, row=2, sticky="EW", padx=(int(.25*self.width),int(.3*self.width)), pady=(15,15))
 
         label_time_tag = ttk.Label(
             self, 
             text='Interval of Time (s)',
             style="LightText6.TLabel"
         )
-        label_time_tag.grid(column=0, row=2, sticky="EW", padx=(int(.25*self.width), int(.3*self.width)), pady=(int(.05*self.height),0))
+        label_time_tag.grid(column=0, row=3, sticky="EW", padx=(int(.25*self.width), int(.3*self.width)), pady=(int(.05*self.height),0))
 
         entry_time = ttk.Entry(
             self, 
@@ -68,7 +77,7 @@ class Control_Panel(ttk.Frame):
             font="Helvetica 20",
             justify='center'
         )
-        entry_time.grid(column=0, row=3, sticky="EW", padx=(int(.25*self.width),int(.3*self.width)), pady=(15,15))
+        entry_time.grid(column=0, row=4, sticky="EW", padx=(int(.25*self.width),int(.3*self.width)), pady=(15,15))
 
 
         calculate_button = ttk.Button(
