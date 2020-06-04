@@ -32,12 +32,12 @@
 
 * Validation of entry float range
 
-    !['Validation '](Demo/validation1.png)
+    !['Validation of float reange'](Demo/validation1.png)
 
 </br>
 
 * Validation of input data type
 
-    !['Dashboard'](Demo/validation2.png)
+    !['Validation input data type'](Demo/validation2.png)
 
 ---
