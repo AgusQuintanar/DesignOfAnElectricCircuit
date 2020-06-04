@@ -29,7 +29,10 @@ class Circuit(ttk.Frame):
         self.resistance.set('Not Calculated')
         self.inductance = tk.StringVar()
         self.capacitance = tk.StringVar()
-        self.voltage = tk.StringVar()
+        # self.voltage = tk.StringVar()
+
+        self.inductance.trace("w", self.dashboard.handle_entries_change)
+        self.capacitance.trace("w", self.dashboard.handle_entries_change)
 
         container = ttk.Frame(self)
         container["height"] = self.height
