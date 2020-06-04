@@ -7,7 +7,6 @@ def plot(fun, start, end):
     n_fun = np.vectorize(fun)
     plt.plot(x, n_fun(x))
 
-
     plt.show()
 
 

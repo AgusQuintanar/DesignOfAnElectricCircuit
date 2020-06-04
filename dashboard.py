@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
 from circuit import Circuit
 from control_panel import Control_Panel
 from PIL import Image, ImageTk
@@ -34,11 +35,20 @@ class Dashboard(ttk.Frame):
         self.handle_entries_change()
 
     def calculate_resistance(self):
-        self.circuit.frames[Circuit_Drawing].show_button["state"] = "normal"
-        self.func = function.get_func(self.control_panel.time.get(), self.circuit.inductance.get(), self.circuit.capacitance.get(), self.control_panel.disipation_ratio.get())
-        self.start, self.end = function.get_range(self.circuit.inductance.get(), self.circuit.capacitance.get())
-        resistance = bisection.solve(self.func, self.start, self.end, 1000, .001)
-        self.circuit.resistance.set(f'{resistance:.2f}')
+        if (self._validate_entries()): #Only calculates resistance when all validations are met
+            self.circuit.frames[Circuit_Drawing].show_button["state"] = "normal"
+            self.func = function.get_func(
+                float(self.control_panel.time.get()), 
+                float(self.circuit.inductance.get()), 
+                float(self.circuit.capacitance.get()), 
+                float(self.control_panel.disipation_ratio.get())
+            )
+            self.start, self.end = function.get_range(
+                float(self.circuit.inductance.get()), 
+                float(self.circuit.capacitance.get())
+            )
+            resistance = bisection.solve(self.func, self.start, self.end, 1000, .001)
+            self.circuit.resistance.set(f'{resistance:.2f}')
 
     def handle_entries_change(self, *args):
         self.circuit.frames[Circuit_Drawing].show_button["state"] = "disabled"
@@ -48,6 +58,40 @@ class Dashboard(ttk.Frame):
             graph.plot(self.func, self.start, self.end)  
         print(self.end)  
 
+    def _is_float(self, value):
+        try:
+            float(value)
+            return True
+        except ValueError:
+            return False
+
+    def _validate_entry(self, entry_name, entry_value, errors, passed_validations):
+        if self._is_float(entry_value):
+            if float(entry_value) <= 0:
+                errors += f"{entry_name} must be grater than 0.\n" 
+                passed_validations = False
+        else:
+            errors += f"{entry_name} must be a valid a number.\n" 
+            passed_validations = False
+        return (errors, passed_validations)
+
+    def _validate_entries(self):
+        errors = ""
+        passed_validations = True
+
+        errors, passed_validations = self._validate_entry("Inductance (H)",  self.circuit.inductance.get(), errors, passed_validations)
+        errors, passed_validations = self._validate_entry("Capacitance (F)", self.circuit.capacitance.get(), errors, passed_validations)
+        errors, passed_validations = self._validate_entry("Disipation Ratio", self.control_panel.disipation_ratio.get(), errors, passed_validations)
+        errors, passed_validations = self._validate_entry("Interval of Time (s)", self.control_panel.time.get(), errors, passed_validations)
+
+        if not passed_validations:
+            messagebox.showerror("Invalid Entries", errors)
+            print(errors)
+
+        return passed_validations
+
+
+      
 
   
 

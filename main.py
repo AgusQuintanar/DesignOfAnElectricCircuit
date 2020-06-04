@@ -140,8 +140,6 @@ class Main(tk.Tk):
         self.geometry(f"{SCREEN_WIDTH}x{SCREEN_HEIGHT}")
         self.resizable(False, False)
 
-        print(SCREEN_HEIGHT, SCREEN_WIDTH)
-
         self.update()
         
        
